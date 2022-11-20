@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
+import './src/style.css';
 import App from './src/app';
 
 let element= document.createElement('div');
