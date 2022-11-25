@@ -27,5 +27,8 @@
 
 /* ==========Media Queries(Small Devices)============= */
 @media only screen and (max-width:600px){
+    .home__img {
+        margin-bottom: -3rem;
+    }
     
 }

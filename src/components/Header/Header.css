@@ -6,6 +6,13 @@
     background-color: #131921;
     padding: 0.2rem;
     position: sticky;
+    top:0;
+}
+
+.link__class{
+    display:inherit;
+    text-decoration: none;
+    color:inherit
 }
 
 /* ======Amazon img ================== */
@@ -77,22 +84,21 @@
 }
 .nav__cartOption{
     display: flex;
-    flex-direction: row;
+    flex-direction:row;
     align-items: center;
     position: relative;
 }
 .nav__cartNo{
+    color:goldenrod;
     position: absolute;
-    top: 4px;
-    left: 22px;
+    top: -3px;
+    left: 15px;
     background-color: #131921;
 }
 
 /* =================Media Queries(Medium Devices)================ */
 @media only screen and (max-width:1024px) {
-    .header__container{
-        height:8vh;
-    }
+    
 }
 /* ==========Media Queries(Small Devices)============= */
 @media only screen and (max-width:600px){
@@ -100,12 +106,12 @@
         display:none;
     }
     .nav__cartOption{
-        display:flex;
+        display:flex!important;
     }
     .nav__cartText{
-        display: none;
+        display: none!important;
     }
     .nav__cartNo{
-        display: inline-block;
+        display: inline-block!important;
     }
 }
