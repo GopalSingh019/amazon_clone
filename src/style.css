@@ -11,14 +11,17 @@
 
 img{
     display: block;
-    object-fit: contain;
-    width:100%;
+    object-fit: cover;
 }
 
 body{
     line-height: 1.2rem;
+    background-color: rgb(234, 237, 237);
 }
 
 h1,h2,h3,h4,h5{
     font-weight: 500;
+}
+.app{
+    position: relative;
 }

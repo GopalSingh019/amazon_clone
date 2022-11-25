@@ -4,18 +4,29 @@
     gap:1rem;
     flex-direction: row;
     background-color: #131921;
+    padding: 0.2rem;
+    position: sticky;
 }
 
+/* ======Amazon img ================== */
+
 .header__image{
-    margin-top: 1.2rem;
+    margin-left: 1rem;
+    padding:  1rem 0.5rem 0.5rem 0.5rem;
+    border:1px solid transparent;
 }
+
+.header__image:hover{
+    border:1px solid white;
+}
+/* =========Search section============== */
 .header__search{
-    width:100%;
     height: 100%;
     margin-top: 0.5rem;
     display:flex;
     flex-direction: row;
     color:rgb(88, 82, 82);
+    flex:1;
 }
 .header__input{
     width:100%;
@@ -32,11 +43,69 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: gold;
+    opacity: 0.8;
+    background-color: goldenrod;
     border-radius: 0 0.3rem 0.3rem 0;
 }
 
-.header__button:hover{ 
-    color:black; 
+.header__button:hover{  
+    opacity: 1;
     background-color: goldenrod;
+}
+/* =========header nav options=========== */
+.header__options{
+    color:white;
+}
+
+.header__nav{
+    display: flex;
+    flex-direction: row;
+}
+
+.nav_link{
+    padding: 0.4rem;
+    border:1px solid transparent;
+}
+
+.nav_link:hover{
+    padding: 0.4rem;
+    border:1px solid white;
+}
+.nav__cart{
+    height: 40px!important;
+    width: 40px!important;
+}
+.nav__cartOption{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+}
+.nav__cartNo{
+    position: absolute;
+    top: 4px;
+    left: 22px;
+    background-color: #131921;
+}
+
+/* =================Media Queries(Medium Devices)================ */
+@media only screen and (max-width:1024px) {
+    .header__container{
+        height:8vh;
+    }
+}
+/* ==========Media Queries(Small Devices)============= */
+@media only screen and (max-width:600px){
+    .nav_link{
+        display:none;
+    }
+    .nav__cartOption{
+        display:flex;
+    }
+    .nav__cartText{
+        display: none;
+    }
+    .nav__cartNo{
+        display: inline-block;
+    }
 }

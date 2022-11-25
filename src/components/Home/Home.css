@@ -1,0 +1,31 @@
+.home__container{
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.home__img{
+    -webkit-mask-image: linear-gradient(rgba(0,0,0,1),rgba(0,0,0,0));
+    z-index: -1;
+    width: 100%;
+    margin-bottom: -8rem;
+}
+.home__rows{
+    display:flex;
+    flex-direction: row;
+    gap:1rem;
+    width:100%;
+    padding: 0.5rem;
+}
+
+/* ==========Media Queries(Medium Devices)============= */
+@media only screen and (max-width:1024px){
+
+}
+
+/* ==========Media Queries(Small Devices)============= */
+@media only screen and (max-width:600px){
+    
+}
