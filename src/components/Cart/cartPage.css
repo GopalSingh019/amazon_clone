@@ -1,0 +1,27 @@
+.cart__container{
+    display:grid;
+    grid-template-columns: 80% 20%;
+}
+.cart__main {
+    padding: 2rem;
+    background-color: white;
+}
+
+.cart__main>hr {
+    background: gray;
+    height: 2px;
+    margin: 0.5rem 0;
+    opacity: 0.5;
+}
+
+.cart__main>h1 {
+    font-weight: 800;
+    padding: 0.5rem;
+}
+.cart__main>img{
+    width:100%;
+}
+
+.card__aside {
+    background-color: white;
+}
