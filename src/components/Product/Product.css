@@ -13,13 +13,13 @@
 
 .product__img{
     margin-top:1rem;
-    width: 150px;
+    object-fit: contain;
 }
 .product__addBtn{
     margin-top:1rem;
     background-color: goldenrod;
     display: inline-block;
-    border:1px solid black;
+    border:1px solid rgba(128, 128, 128, 0.541);
 }
 .product__Btn{
     text-align: center;
@@ -36,6 +36,6 @@
 /* ==========Media Queries(Small Devices)============= */
 @media only screen and (max-width:600px){
     .product__img{
-        height: 70px;
+        
     }
 }

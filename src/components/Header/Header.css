@@ -102,16 +102,11 @@
 }
 /* ==========Media Queries(Small Devices)============= */
 @media only screen and (max-width:600px){
-    .nav_link{
-        display:none;
-    }
-    .nav__cartOption{
-        display:flex!important;
+    .nav__link1{
+        display: none;
     }
     .nav__cartText{
-        display: none!important;
+        display:none;
     }
-    .nav__cartNo{
-        display: inline-block!important;
-    }
+    
 }

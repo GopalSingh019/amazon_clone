@@ -1,6 +1,6 @@
 .cart__container{
     display:grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 75% 25%;
 }
 .cart__main {
     padding: 2rem;
@@ -59,30 +59,27 @@
     background-color: goldenrod;
 }
 
-.cart__product{
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    margin:1rem;
-    gap:1rem;
-}
-.cart__productImage{
-    width:180px;
-}
-.cart__productdescription{
-    display:flex;
-    flex-direction: column;
-    gap:0.5rem;
-    justify-content: center;
-}
-.cart__productdescription>small{
-    color:#007185;
-}
-.cart__productCost{
-    font-weight: 600;
-    font-size: 2rem;
-}
+
 
 .cart__subtotal{
     text-align: right;
+}
+
+/* ====================Medium Devices======================= */
+@media only screen and (max-width:1024px){
+    .cart__container{
+        grid-template-columns: 60% 40%;
+    }
+}
+/* =====================Small Devices======================= */
+@media only screen and (max-width:600px){
+    .cart__container{
+        grid-template-columns: 1fr;
+    }
+    .cart__main{
+        width:90vw;
+    }
+    .cart__productCost{
+        font-size:medium;
+    }
 }

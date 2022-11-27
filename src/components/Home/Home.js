@@ -9,15 +9,20 @@ function Home() {
         <div className='home__rows'>
             <Product title="Atomic Habits by James Clear"
             rating="4" img="https://m.media-amazon.com/images/I/91bYsX41DVL.jpg" price="229.99"/>
-            <Product/>
+            <Product title="Atomic Habits by James Clear"
+            rating="4" img="https://m.media-amazon.com/images/I/91bYsX41DVL.jpg" price="229.99"/>
         </div>
         <div className='home__rows'>
-            <Product/>
-            <Product/>
-            <Product/>
+        <Product title="Atomic Habits by James Clear"
+            rating="4" img="https://m.media-amazon.com/images/I/91bYsX41DVL.jpg" price="229.99"/>
+            <Product title="Atomic Habits by James Clear"
+            rating="4" img="https://m.media-amazon.com/images/I/91bYsX41DVL.jpg" price="229.99"/>
+            <Product title="Atomic Habits by James Clear"
+            rating="4" img="https://m.media-amazon.com/images/I/91bYsX41DVL.jpg" price="229.99"/>
         </div>
         <div className='home__rows'>
-            <Product/>
+        <Product title="Atomic Habits by James Clear"
+            rating="4" img="https://m.media-amazon.com/images/I/91bYsX41DVL.jpg" price="229.99"/>
         </div>
     </section>
   )

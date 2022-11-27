@@ -2,7 +2,7 @@ import React from 'react'
 import './header.css';
 import SearchIcon from '@mui/icons-material/Search';
 import ProductionQuantityLimitsOutlinedIcon from '@mui/icons-material/ProductionQuantityLimitsOutlined';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 function Header() {
     return (
@@ -15,8 +15,8 @@ function Header() {
             </div>
             <div className='header__options'>
                 <ul className="header__nav">
-                    <li className='nav_link'><a><small>Hello, sign in</small><h3>Account</h3></a></li>
-                    <li className='nav_link'><a><small>Returns</small><h3>& Orders</h3></a></li>
+                    <li className='nav_link nav__link1'><a><small>Hello, sign in</small><h3>Account</h3></a></li>
+                    <li className='nav_link nav__link1'><a><small>Returns</small><h3>& Orders</h3></a></li>
                     <li className='nav_link '>
                         <Link to='/checkout' className='link__class'>
                             <div className="nav__cartOption">
