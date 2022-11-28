@@ -4,6 +4,7 @@
     width:100%;
     margin-bottom:0.5rem;
     padding:1rem;
+    height:70px;
 }
 
 .product__container>h3{
@@ -13,7 +14,8 @@
 
 .product__img{
     margin-top:1rem;
-    object-fit: contain;
+    object-fit: cover;
+    width:150px;
 }
 .product__addBtn{
     margin-top:1rem;
@@ -36,6 +38,6 @@
 /* ==========Media Queries(Small Devices)============= */
 @media only screen and (max-width:600px){
     .product__img{
-        
+        /* max-width:100%; */
     }
 }

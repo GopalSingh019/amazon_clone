@@ -30,5 +30,9 @@
     .home__img {
         margin-bottom: -3rem;
     }
+    .home__rows2{
+        display: grid;
+        grid-template-columns: 30% 30% 30%;
+    }
     
 }
