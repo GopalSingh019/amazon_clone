@@ -15,7 +15,7 @@ function Header() {
             </div>
             <div className='header__options'>
                 <ul className="header__nav">
-                    <li className='nav_link nav__link1'><a><small>Hello, sign in</small><h3>Account</h3></a></li>
+                    <li className='nav_link nav__link1'><Link to='/Login' className='link__class'><small>Hello, sign in</small><h3>Account</h3></Link></li>
                     <li className='nav_link nav__link1'><a><small>Returns</small><h3>& Orders</h3></a></li>
                     <li className='nav_link '>
                         <Link to='/checkout' className='link__class'>
