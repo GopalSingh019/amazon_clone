@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import './login.css';
 function login() {
   return (<>
-    <header className='login__header'>
-      <img src="https://m.media-amazon.com/images/G/31/social_share/amazon_logo._CB633266945_.png"></img>
+    <header >
+      <Link to="/" className='login__header'>
+      <img src="https://m.media-amazon.com/images/G/31/social_share/amazon_logo._CB633266945_.png"></img></Link>
     </header>
     <section className='login__section'>
       <div className='login__container'>
