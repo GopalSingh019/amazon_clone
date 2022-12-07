@@ -1,0 +1,108 @@
+.login__header{
+    height:60px;
+    background-color: white;
+    display:flex;
+    justify-content: center;
+}
+.login__header>img{
+    width:20%;
+}
+.login__section{
+    background-color: white;
+    text-align: center;
+}
+.login__container{
+    text-align: left;
+    margin:1rem;
+    display: inline-block;
+    border:1px solid rgba(128, 128, 128, 0.44);
+    padding:2rem;
+    border-radius: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+.login__title>h1{
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+.login__Email{
+    font-size: 1rem;
+    font-weight: 700;
+}
+.login__input{
+    margin:0.5rem 0;
+    border: 1px solid rgba(128, 128, 128, 0.645);
+    border-radius: 0.2rem;
+    font-weight: 300;
+    padding:0.4rem;
+    width:15rem
+}
+.login__btn{
+    margin-top: 1rem;
+    background-color: gold;
+    text-align: center;
+    padding: 0.4rem 0;
+    border-radius: 0.3rem;
+    font-weight: 300;
+}
+.login__btn:hover{
+    background-color: goldenrod;
+}
+.login__new{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin:1rem 0;
+}
+.login__hr{
+    border:1px solid rgba(128, 128, 128, 0.168);
+    background-color: rgba(128, 128, 128, 0.645);
+    display: inline-block;
+    width:28%;
+    height:0.5px;
+    margin: auto;
+}
+.login__newtoamz{
+    display: inline-block;
+    line-height: 0.7rem;
+    font-size: smaller;
+    color:gray;
+}
+.login__createAcc{
+    border: 1px solid grey;
+    padding: 0.4rem;
+    text-align: center;
+    border-radius: 0.2rem;
+    background-color: rgba(128, 128, 128, 0.09);
+}
+.login__createAcc:hover{
+    background-color: rgba(128, 128, 128, 0.438);
+}
+.login__end{
+    border:1px solid rgba(128, 128, 128, 0.162);
+    background: linear-gradient(to right,rgba(128, 128, 128, 0.085),rgba(128, 128, 128, 0.703),rgba(128, 128, 128, 0.085));
+    margin:0 4rem;
+}
+.login__link{
+    color:black;
+}
+
+/* ===========Media Queries(Medium Devices) */
+@media only screen and (max-width:1024px){
+    .login__header>img {
+        width: 40%;
+    }
+    .login__input{
+        width:25rem;
+    }
+    
+}
+/* ===========Media Queries(Small Devices) */
+@media only screen and (max-width:600px){
+    .login__header>img {
+        width: 80%;
+    }
+    .login__input{
+        width:20rem;
+    }
+    
+}
