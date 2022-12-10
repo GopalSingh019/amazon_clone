@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './SignUp.css';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../FireBase/FirebaseConfig';
 import { Alert, Snackbar } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../Store/Reducers';
 
 function SignUp() {
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [confirmPasssword, setConfirmPassword] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
+
+    const dispatch=useDispatch();
+    const navigate=useNavigate();
+
     function onSignup() {
 
         if (!email || !email.includes('@gmail.com')) {
@@ -47,10 +53,11 @@ function SignUp() {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in 
-                const user = userCredential.user;
-                console.log(user);
+                const user = JSON.parse(JSON.stringify(userCredential.user));
+                dispatch(setUser({type:'users',payload:user}));
+
                 // ...
-                window.open('/', '_self');
+                navigate('/');
             })
             .catch((error) => {
                 const errorCode = error.code;

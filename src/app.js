@@ -6,12 +6,14 @@ import CartPage from './components/Cart/CartPage';
 import Login from './components/Login/login';
 import SignUp from './components/SignUp/SignUp';
 import { BrowserRouter,Route } from 'react-router-dom';
-import {Router, Routes} from 'react-router'
+import {Router, Routes} from 'react-router';
+import { Provider } from 'react-redux';
+import store from './Store/Store';
 
 function app() {
   return (
     <div className='app'>
-        
+        <Provider store={store}>
         <BrowserRouter>
         {/* <Header></Header> */}
         <Routes>
@@ -22,6 +24,7 @@ function app() {
         </Routes>
         
         </BrowserRouter>
+        </Provider>
     </div>
   )
 }

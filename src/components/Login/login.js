@@ -1,14 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { auth } from '../../FireBase/FirebaseConfig';
 import './login.css';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Alert, Snackbar } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../../Store/Reducers';
 
 function login() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const dispatch=useDispatch();
+  const navigate=useNavigate();
+  // const userVal=useSelector(state=>state.user);
+  // console.log(userVal);
   function onLogin() {
     if (!email || !email.includes('@gmail.com')) {
       setErrorMsg('Pls provide correct Email');
@@ -24,12 +31,13 @@ function login() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
-        const user = userCredential.user;
+        const user = JSON.parse(JSON.stringify(userCredential.user));
         console.log(user);
         // ...
+        dispatch(setUser({type:'users',payload:user}));
         setEmail(null);
         setPassword(null);
-        window.open('/', '_self');
+        navigate('/');
       })
       .catch((error) => {
         const errorCode = error.code;
