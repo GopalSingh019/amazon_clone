@@ -24,6 +24,7 @@
 }
 .cart__main>img{
     width:100%;
+    height: -webkit-fill-available;
 }
 
 .cart__Link{

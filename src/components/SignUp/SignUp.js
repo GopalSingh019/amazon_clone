@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../FireBase/FirebaseConfig';
 import { Alert, Snackbar } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../Store/Reducers';
+import { setUser } from '../../Store/userReducers';
 
 function SignUp() {
     const [email, setEmail] = useState(null);

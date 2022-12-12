@@ -47,5 +47,5 @@ module.exports = {
           title: "Amazon-clone",
         }),
       ],
-
+      devtool: "eval-source-map"
 }

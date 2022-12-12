@@ -6,16 +6,38 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { auth } from '../../FireBase/FirebaseConfig';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
-    const[cartTotal,setCartTotal]=useState(0);
-    const[userName,setUserName]=useState('Sign In');
-    const user=useSelector(state=>state.user.user);
-    useEffect(()=>{
-        if(user){
-            setUserName(user.payload.email);
+    const [userName, setUserName] = useState('Accounts');
+    const [sign, setSign] = useState('Sign In');
+    const [user, setUser] = useState(null);
+    const navigate=useNavigate();
+
+    const totalItems=useSelector(state=>state?.Items?.items?.payload?.length) || 0;
+
+    useEffect(() => {
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                setUser(user);
+                setUserName(user.email);
+                setSign('Sign Out');
+            }
+        })
+    }, []);
+    const signOption=(oEvent)=>{
+        oEvent.preventDefault();
+        if(sign==='Sign In'){
+            navigate('/Login');
+        }else{
+            auth.signOut().then(()=>{
+                setUser(null);
+                setUserName('Accounts');
+                setSign('Sign In');
+            })
         }
-    },[]);
+    }
     return (
         <header className='header__container'>
 
@@ -26,14 +48,14 @@ function Header() {
             </div>
             <div className='header__options'>
                 <ul className="header__nav">
-                    <li className='nav_link nav__link1'><Link to='/Login' className='link__class'><small>Hello, {userName}</small><h3>Accounts</h3></Link></li>
+                    <li className='nav_link nav__link1'><Link  onClick={signOption} className='link__class'><small>Hello, {sign}</small><h3>{userName}</h3></Link></li>
                     <li className='nav_link nav__link1'><a><small>Returns</small><h3>& Orders</h3></a></li>
                     <li className='nav_link '>
                         <Link to='/checkout' className='link__class'>
                             <div className="nav__cartOption">
                                 <ProductionQuantityLimitsOutlinedIcon className='nav__cart' />
                                 <h3 className='nav__cartText'>Cart</h3>
-                                <h3 className="nav__cartNo">{cartTotal}</h3>
+                                <h3 className="nav__cartNo">{totalItems}</h3>
                             </div>
                         </Link>
                     </li>

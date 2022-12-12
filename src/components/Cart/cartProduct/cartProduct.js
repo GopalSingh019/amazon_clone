@@ -3,36 +3,64 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import './cartProduct.css';
 
-function cartProduct() {
+function cartProduct(props) {
+    let {productid,title,cost,qty,selected,img}=props.children;
+    const onCheckBoxChange=()=>{
+        console.log(productid);
+        selected=false;
+    }
+    const onIncrementItem=()=>{
+        qty=qty+1;
+    }
+    const onDecrementItem=()=>{
+        if(!qty<1)
+        qty--;
+    }
+    const onRemoveItem=()=>{
+
+    }
     return (
         <div>
             <article className='cart__product'>
 
-                <input type="checkbox" />
+                <input type="checkbox" checked={selected} onChange={onCheckBoxChange}/>
 
-                <div className='cart__productImage'><img src="https://m.media-amazon.com/images/I/81ZgVXZjI-L._SL1500_.jpg" /></div>
+                <div className='cart__productImage'><img src={img} /></div>
 
                 <div className='cart__productdescription'>
-                    <div className='cart__productDesc'><h2>Horlicks Protein Plus Vanilla High Protein Drink for Adults 400 g Jar, Whey, Soy & Casein Powder Blend - For Muscle Mass & Strength, Veg </h2></div>
+                    <div className='cart__productDesc'><h2>{title}</h2></div>
+                    <div className='cart__productCostMob'>${cost}</div>
                     <small>In stock</small>
 
                     <div className='cart__options'>
                         <div className='cart__productqty'>
                             <h3>Qty: </h3>
                             <div className='cart__productqtyBtn'>
-                                <AddIcon className='cart__icon'></AddIcon>
-                                <div>9</div>
-                                <RemoveIcon className='cart__icon'></RemoveIcon>
+                                <AddIcon className='cart__icon' onClick={onIncrementItem}></AddIcon>
+                                <div>{qty}</div>
+                                <RemoveIcon className='cart__icon' onClick={onDecrementItem}></RemoveIcon>
                             </div>
                         </div>
                         <div className='cart__optionsepartaor'></div>
-                        <a className='cart__deleteoption'>Delete</a>
+                        <a className='cart__deleteoption' onClick={onRemoveItem}>Delete</a>
                     </div>
 
                 </div>
 
-                <div className='cart__productCost'>$266.00</div>
+                <div className='cart__productCost'>${cost}</div>
             </article>
+            <div className='cart__optionsMob'>
+                        <div className='cart__productqty'>
+                            <h3>Qty: </h3>
+                            <div className='cart__productqtyBtn'>
+                                <AddIcon className='cart__icon' onClick={onIncrementItem}></AddIcon>
+                                <div>{qty}</div>
+                                <RemoveIcon className='cart__icon' onClick={onDecrementItem}></RemoveIcon>
+                            </div>
+                        </div>
+                        <div className='cart__optionsepartaor'></div>
+                        <a className='cart__deleteoption' onClick={onRemoveItem}>Delete</a>
+                    </div>
         </div>
     )
 }

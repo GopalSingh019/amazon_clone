@@ -6,7 +6,7 @@ import './login.css';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Alert, Snackbar } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../../Store/Reducers';
+import { setUser } from '../../Store/userReducers';
 
 function login() {
   const [email, setEmail] = useState(null);
