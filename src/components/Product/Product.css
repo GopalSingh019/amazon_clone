@@ -4,6 +4,8 @@
     width:100%;
     margin-bottom:0.5rem;
     padding:1rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .product__container>h3{
@@ -16,20 +18,29 @@
     object-fit: cover;
     max-width:100%;
     width:150px;
-    height:200px;
+    /* height:200px; */
     
 }
 .product__addBtn{
     margin-top:1rem;
-    background-color: goldenrod;
+    border-radius: 0.2rem;
+    padding: 0.3rem;
+    background-color: gold;
     display: inline-block;
+    transition:all 2s ease-in;
+    box-sizing: border-box;
+}
+.product__addBtn:hover{
+    background-color: goldenrod;
     border:1px solid rgba(128, 128, 128, 0.541);
+    
 }
 .product__Btn{
     text-align: center;
 }
 .product__imgContainer {
     text-align: -webkit-center;
+    height: -webkit-fill-available;
 }
 
 /* ==========Media Queries(Medium Devices)============= */
