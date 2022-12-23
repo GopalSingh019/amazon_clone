@@ -5,6 +5,7 @@ import './cartProduct.css';
 
 function cartProduct(props) {
     let {id,title,price,qty,selected,thumbnail,brand}=props.children;
+
     const onCheckBoxChange=()=>{
         console.log(productid);
         selected=false;

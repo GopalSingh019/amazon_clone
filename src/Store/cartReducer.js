@@ -15,12 +15,10 @@ const cartReducer = createSlice({
             }
         },
         updateCartItems: function (state, action) {
-            // let itemsCopy={...state.items};
-            // console.log([...itemsCopy]);
-            // itemsCopy(action.payload.payload);
-            // return{
-            //     itemsCopy
-            // }
+            
+            return{
+                ...action.payload.payload
+            }
 
         }
     }

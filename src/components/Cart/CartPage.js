@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './cartPage.css';
 import CartProduct from './cartProduct/cartProduct';
-import {setCartItems} from '../../Store/cartReducer';
+import {setCartItems,updateCartItems} from '../../Store/cartReducer';
 
 
 function CartPage() {
@@ -23,7 +23,7 @@ function CartPage() {
     for (let item in totalItems) {
       if (totalItems[item].selected === true){
         count++;
-        sumTotal+=Number(totalItems[item].price*totalItems[item].qty);
+        sumTotal+=Number(totalItems[item].price*(totalItems[item].qty||1));
       }
     }
     setSelected( count );
@@ -35,14 +35,14 @@ function CartPage() {
     let oldItems=JSON.parse(JSON.stringify(totalItems));
     const newItems=oldItems.map((item)=>{item.selected=false;return item});
     console.log(newItems);
-    dispatch(setCartItems({payload:newItems}));
+    dispatch(updateCartItems({payload:{items:newItems}}));
   }
 
   const onSelectAll=()=>{
     let oldItems=JSON.parse(JSON.stringify(totalItems));
     const newItems=oldItems.map((item)=>{item.selected=true;return item});
     console.log(newItems);
-    dispatch(setCartItems({payload:newItems}));
+    dispatch(updateCartItems({payload:{items:newItems}}));
   }
 
   return (
