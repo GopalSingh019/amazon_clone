@@ -23,7 +23,7 @@ function Home() {
   }
   },[items]);
   useEffect(() => {
-    dispatch(setCartItems({ payload: cartItems }));
+    dispatch(setCartItems());
     //dispatch action for loading products
     dispatch(fetchAllProducts('https://dummyjson.com/products'));
   }, []);
@@ -34,21 +34,21 @@ function Home() {
       {products?.length>0 && products.map((item)=>{
        return (<><div className='home__rows'>
         <Product title={item[0].description} id='001'
-          rating={item[0].rating} img={item[0].thumbnail} price={item[0].price} />
+          rating={item[0].rating} img={item[0].thumbnail} price={item[0].price} >{item[0]}</Product>
         <Product title={item[1].description} id='002'
-          rating={item[1].rating} img={item[2].thumbnail} price={item[1].price} />
+          rating={item[1].rating} img={item[2].thumbnail} price={item[1].price} >{item[1]}</Product>
       </div>
       <div className='home__rows home__rows2'>
         <Product title={item[2].description} id='003'
-          rating={item[2].rating} img={item[2].thumbnail} price={item[2].price} />
+          rating={item[2].rating} img={item[2].thumbnail} price={item[2].price} >{item[2]}</Product>
         <Product title={item[3].description} id='004'
-          rating={item[3].rating} img={item[3].thumbnail} price={item[3].price} />
+          rating={item[3].rating} img={item[3].thumbnail} price={item[3].price} >{item[3]}</Product>
         <Product title={item[4].description} id='005'
-          rating={item[4].rating} img={item[4].thumbnail} price={item[4].price} />
+          rating={item[4].rating} img={item[4].thumbnail} price={item[4].price} >{item[4]}</Product>
       </div>
       <div className='home__rows'>
         <Product title={item[5].description} id='006'
-          rating={item[5].rating} img={item[5].thumbnail} price={item[5].price} />
+          rating={item[5].rating} img={item[5].thumbnail} price={item[5].price} >{item[5]}</Product>
       </div></>)
       })
       }

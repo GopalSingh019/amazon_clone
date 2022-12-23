@@ -13,9 +13,9 @@ function Header() {
     const [userName, setUserName] = useState('Accounts');
     const [sign, setSign] = useState('Sign In');
     const [user, setUser] = useState(null);
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
-    const totalItems=useSelector(state=>state?.Items?.items?.payload?.length) || 0;
+    const totalItems = useSelector(state => state?.Items?.items?.length) || 0;
 
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
@@ -26,16 +26,24 @@ function Header() {
             }
         })
     }, []);
-    const signOption=(oEvent)=>{
+    const signOption = (oEvent) => {
         oEvent.preventDefault();
-        if(sign==='Sign In'){
+        if (sign === 'Sign In') {
             navigate('/Login');
-        }else{
-            auth.signOut().then(()=>{
+        } else {
+            auth.signOut().then(() => {
                 setUser(null);
                 setUserName('Accounts');
                 setSign('Sign In');
             })
+        }
+    }
+    const checkout = (oEvent) => {
+        oEvent.preventDefault();
+        if (sign === 'Sign In') {
+            navigate('/Login');
+        } else {
+            navigate('/checkout');
         }
     }
     return (
@@ -48,10 +56,10 @@ function Header() {
             </div>
             <div className='header__options'>
                 <ul className="header__nav">
-                    <li className='nav_link nav__link1'><Link  onClick={signOption} className='link__class'><small>Hello, {sign}</small><h3>{userName}</h3></Link></li>
+                    <li className='nav_link nav__link1'><Link onClick={signOption} className='link__class'><small>Hello, {sign}</small><h3>{userName}</h3></Link></li>
                     <li className='nav_link nav__link1'><a><small>Returns</small><h3>& Orders</h3></a></li>
                     <li className='nav_link '>
-                        <Link to='/checkout' className='link__class'>
+                        <Link className='link__class' onClick={checkout}>
                             <div className="nav__cartOption">
                                 <ProductionQuantityLimitsOutlinedIcon className='nav__cart' />
                                 <h3 className='nav__cartText'>Cart</h3>

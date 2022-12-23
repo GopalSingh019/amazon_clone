@@ -100,6 +100,10 @@
         width: 80%;
     }
     .login__input{
-        width:20rem;
+        width:10rem;
+    }
+    .login__container{
+        margin:0.2rem;
+        padding: 0.8rem;
     }
 }

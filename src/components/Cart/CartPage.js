@@ -1,5 +1,5 @@
 
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './cartPage.css';
 import CartProduct from './cartProduct/cartProduct';
@@ -9,9 +9,13 @@ import {setCartItems} from '../../Store/cartReducer';
 function CartPage() {
   const [costTotal, setCostTotal] = useState(() => { return 0; });
   const [selected, setSelected] = useState(() => { return 0; });
-  const totalItems = useSelector(state => state?.Items?.items?.payload);
+  const totalItems = useSelector(state => state?.Items?.items);
 
   const dispatch=useDispatch();
+
+  useEffect(()=>{
+    dispatch(setCartItems());
+  },[]);
 
   useMemo(()=>{if (totalItems?.length > 0) {
     let count = 0;
@@ -19,7 +23,7 @@ function CartPage() {
     for (let item in totalItems) {
       if (totalItems[item].selected === true){
         count++;
-        sumTotal+=Number(totalItems[item].cost*totalItems[item].qty);
+        sumTotal+=Number(totalItems[item].price*totalItems[item].qty);
       }
     }
     setSelected( count );

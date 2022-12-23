@@ -4,7 +4,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import './cartProduct.css';
 
 function cartProduct(props) {
-    let {productid,title,cost,qty,selected,img}=props.children;
+    let {id,title,price,qty,selected,thumbnail,brand}=props.children;
     const onCheckBoxChange=()=>{
         console.log(productid);
         selected=false;
@@ -25,11 +25,11 @@ function cartProduct(props) {
 
                 <input type="checkbox" checked={selected} onChange={onCheckBoxChange}/>
 
-                <div className='cart__productImage'><img src={img} /></div>
+                <div className='cart__productImage'><img src={thumbnail} /></div>
 
                 <div className='cart__productdescription'>
-                    <div className='cart__productDesc'><h2>{title}</h2></div>
-                    <div className='cart__productCostMob'>${cost}</div>
+                    <div className='cart__productDesc'><h2>{brand}: {title}</h2></div>
+                    <div className='cart__productCostMob'>${price}</div>
                     <small>In stock</small>
 
                     <div className='cart__options'>
@@ -47,7 +47,7 @@ function cartProduct(props) {
 
                 </div>
 
-                <div className='cart__productCost'>${cost}</div>
+                <div className='cart__productCost'>${price}</div>
             </article>
             <div className='cart__optionsMob'>
                         <div className='cart__productqty'>
