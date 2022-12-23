@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import './cartProduct.css';
 
 function cartProduct(props) {
     let {id,title,price,qty,selected,thumbnail,brand}=props.children;
+    if(!qty)
+    qty=1;
 
     const onCheckBoxChange=()=>{
-        console.log(productid);
-        selected=false;
+        props.update(id,"selected",!selected);
     }
     const onIncrementItem=()=>{
-        qty=qty+1;
+        props.update(id,"qty",qty+1 || 1);
     }
     const onDecrementItem=()=>{
-        if(!qty<1)
-        qty--;
+        props.update(id,"qty",qty-1 || 1);
     }
     const onRemoveItem=()=>{
-
+        props.update(id,"Delete",true);
     }
     return (
         <div>
@@ -30,8 +30,8 @@ function cartProduct(props) {
 
                 <div className='cart__productdescription'>
                     <div className='cart__productDesc'><h2>{brand}: {title}</h2></div>
-                    <div className='cart__productCostMob'>${price}</div>
                     <small>In stock</small>
+                    <div className='cart__productCostMob'>${price}</div>
 
                     <div className='cart__options'>
                         <div className='cart__productqty'>

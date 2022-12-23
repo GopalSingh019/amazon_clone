@@ -115,4 +115,7 @@ display: none;
     .cart__productCost{
         display: none;
     }
+    .cart__productCostMob{
+        display: block;
+    }
 }

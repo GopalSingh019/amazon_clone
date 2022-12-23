@@ -103,7 +103,7 @@
         width:10rem;
     }
     .login__container{
-        margin:0.2rem;
-        padding: 0.8rem;
+        margin:0.2rem!important;
+        padding: 0.8rem!important;
     }
 }

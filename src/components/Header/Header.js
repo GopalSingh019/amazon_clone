@@ -35,6 +35,7 @@ function Header() {
                 setUser(null);
                 setUserName('Accounts');
                 setSign('Sign In');
+                navigate('/');
             })
         }
     }
