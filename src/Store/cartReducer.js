@@ -9,9 +9,11 @@ const cartReducer = createSlice({
     initialState,
     reducers: {
         setCartItems(state, action) {
-            localStorage.getItem("cart");
+
+            let items=localStorage.getItem("cart") || '[]';
+
             return {
-                items:JSON.parse(localStorage.getItem("cart") || [])
+                items:JSON.parse(localStorage.getItem("cart") || '[]')
             }
         },
         updateCartItems: function (state, action) {

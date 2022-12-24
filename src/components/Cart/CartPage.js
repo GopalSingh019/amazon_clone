@@ -15,7 +15,7 @@ function CartPage() {
   const dispatch = useDispatch();
 
   const updateLs=()=>{
-    localStorage.setItem("cart",JSON.stringify(savedItems.current));
+    localStorage.setItem("cart",JSON.stringify(savedItems.current || []));
   };
 
   useEffect(() => {
