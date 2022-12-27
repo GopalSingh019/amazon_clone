@@ -24,11 +24,12 @@
 .product__addBtn{
     margin-top:1rem;
     border-radius: 0.2rem;
+    border:1px solid transparent;
     padding: 0.3rem;
     background-color: gold;
     display: inline-block;
     transition:all 200ms ease-in;
-    box-sizing: border-box;
+    cursor: pointer;
 }
 .product__addBtn:hover{
     background-color: goldenrod;

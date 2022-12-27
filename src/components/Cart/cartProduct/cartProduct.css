@@ -87,7 +87,8 @@ display: none;
 }
 
 .cart__deleteoption {
-    color: #007185
+    color: #007185;
+    cursor: pointer;
 }
 .cart__productCostMob{
     display: none;

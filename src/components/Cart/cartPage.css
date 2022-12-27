@@ -34,6 +34,7 @@
 .cart__Link:hover{
     color: #019f4b;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .card__aside {
@@ -49,6 +50,7 @@
     /* border:1px solid black; */
     background-color: gold;
     border-radius:0.4rem;
+    cursor: pointer;
 }
 .cart__total{
     font-weight: 600;

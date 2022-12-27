@@ -14,6 +14,8 @@ function Product(props) {
     cartProduct.push({...props.children,selected:true,qty:1});
     localStorage.setItem("cart",JSON.stringify(cartProduct));
     dispatch(setCartItems());
+    //to show snackbar
+    props.setAddSuccessFun(true);
   }
   return (
     <article className='product__container'>
