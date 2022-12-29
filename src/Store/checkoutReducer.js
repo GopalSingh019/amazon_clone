@@ -10,7 +10,7 @@ const checkoutReducer=createSlice({
     reducers:{
         setCheckoutItems:(state,action)=>{
             return {
-                item:action.payload
+                item:action.payload.payload
             }
         }
     }
@@ -18,4 +18,4 @@ const checkoutReducer=createSlice({
 
 export const {setCheckoutItems}=checkoutReducer.actions;
 
-export default checkoutReducer;
+export default checkoutReducer.reducer;
