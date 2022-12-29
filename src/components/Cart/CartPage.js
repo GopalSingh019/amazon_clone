@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './cartPage.css';
 import CartProduct from './cartProduct/cartProduct';
 import { setCartItems, updateCartItems, } from '../../Store/cartReducer';
+import {setCheckoutItems} from '../../Store/checkoutReducer';
 
 
 function CartPage() {
@@ -70,6 +71,9 @@ function CartPage() {
 
   const onProceedToCheckOut=()=>{
     if(costTotal>0){
+      let oldItems = JSON.parse(JSON.stringify(totalItems));
+      let newItems=oldItems.reduce((acc,item)=>{if(item.selected)acc.push(item);return acc;},[]);
+      dispatch(setCheckoutItems({payload:newItems}));
       navigate('/gp');
     }
   }
