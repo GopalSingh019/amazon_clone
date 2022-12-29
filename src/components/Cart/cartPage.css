@@ -45,6 +45,7 @@
     height:fit-content;
 }
 .cart__buyBtn{
+    box-shadow: 1px 1px 8px #0000006e;
     padding:0.5rem;
     margin:1rem;
     /* border:1px solid black; */

@@ -1,0 +1,15 @@
+.checkout__Header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:60px;
+    border: 0 0 1px 0 solid #DDD;
+    background-image: url(https://images-na.ssl-images-amazon.com/images/G/31/common/sprites/tspc-header-bkg.png);
+}
+.checkout__Header>h2{
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+.checkout__Container{
+    
+}

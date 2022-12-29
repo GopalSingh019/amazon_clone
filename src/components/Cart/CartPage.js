@@ -1,9 +1,10 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import './cartPage.css';
 import CartProduct from './cartProduct/cartProduct';
-import { setCartItems, updateCartItems } from '../../Store/cartReducer';
+import { setCartItems, updateCartItems, } from '../../Store/cartReducer';
 
 
 function CartPage() {
@@ -13,6 +14,7 @@ function CartPage() {
   const savedItems=React.useRef();
   savedItems.current=totalItems;
   const dispatch = useDispatch();
+  const navigate=useNavigate();
 
   const updateLs=()=>{
     localStorage.setItem("cart",JSON.stringify(savedItems.current || []));
@@ -66,6 +68,12 @@ function CartPage() {
     }
   }
 
+  const onProceedToCheckOut=()=>{
+    if(costTotal>0){
+      navigate('/gp');
+    }
+  }
+
   return (
     <div className='cart__container'>
 
@@ -96,7 +104,7 @@ function CartPage() {
           <h1>{`Subtotal(${selected} items):$ `}</h1>
           <h1 className='cart__total'>{`${costTotal}`}</h1>
         </div>
-        <div className='cart__buyBtn'>Proceed to Buy</div>
+        <div className='cart__buyBtn' onClick={onProceedToCheckOut}>Proceed to Buy</div>
       </aside>
     </div>
   )

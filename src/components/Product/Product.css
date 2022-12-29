@@ -22,6 +22,7 @@
     
 }
 .product__addBtn{
+    box-shadow: 1px 1px 8px #0000006e;
     margin-top:1rem;
     border-radius: 0.2rem;
     border:1px solid transparent;

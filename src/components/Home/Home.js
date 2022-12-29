@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Product from '../Product/Product';
 import './Home.css';
-import cartItems from '../Cart/cp';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCartItems } from '../../Store/cartReducer';
 import { fetchAllProducts } from '../../Store/productReducer';

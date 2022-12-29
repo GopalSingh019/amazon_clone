@@ -9,7 +9,7 @@ import { BrowserRouter,Route } from 'react-router-dom';
 import {Router, Routes} from 'react-router';
 import { Provider } from 'react-redux';
 import store from './Store/Store';
-
+import CheckOut from './components/Checkout/checkout';
 
 function app() {
   return (
@@ -22,6 +22,7 @@ function app() {
         <Route path='/checkout' element={<><Header></Header><CartPage/></>}></Route>
         <Route path='/Login' element={<Login></Login>} />
         <Route path='/createAcc' element={<SignUp></SignUp>}/>
+        <Route path='/gp' element={<CheckOut></CheckOut>}/>
         </Routes>
         
         </BrowserRouter>
