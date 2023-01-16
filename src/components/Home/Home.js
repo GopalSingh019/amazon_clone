@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCartItems } from '../../Store/cartReducer';
 import { fetchAllProducts } from '../../Store/productReducer';
 import { Alert, Snackbar } from '@mui/material';
+import Loading from '../Loader/Loader';
 
 function Home() {
   const dispatch = useDispatch();
@@ -64,6 +65,18 @@ function Home() {
           Item Added To Cart😊!
         </Alert>
       </Snackbar>
+      <div className='home__loader'>
+      <Loading></Loading>
+      <Loading></Loading>
+      </div>
+      <div className='home__loader'>
+      <Loading></Loading>
+      <Loading></Loading>
+      <Loading></Loading>
+      </div>
+      <div className='home__loader'>
+      <Loading></Loading>
+      </div>
     </section>
   )
 }

@@ -19,6 +19,12 @@
     width:100%;
     padding: 0.5rem;
 }
+.home__loader{
+    display: flex;
+    width: 100%;
+    gap:1rem;
+    padding: 0.5rem;
+}
 
 /* ==========Media Queries(Medium Devices)============= */
 @media only screen and (max-width:1024px){

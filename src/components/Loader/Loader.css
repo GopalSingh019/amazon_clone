@@ -1,0 +1,31 @@
+.container{
+    display:flex;
+    width:100%;
+    gap:1rem;
+    border:1px solid rgba(128, 128, 128, 0.677);
+    flex-direction: column;
+    padding: 1rem;
+    border-radius:1rem
+  }
+  .img__container{
+    height:150px;
+    /* width:150px; */
+    background-color: rgba(128, 128, 128, 0.677);
+    border-radius:1rem;
+  }
+  .desc{
+    height:15px;
+    background-color:rgba(128, 128, 128, 0.677);
+    /* width:150px; */
+    border-radius:3rem;
+  }
+  .btn{
+    background-color: rgba(128, 128, 128, 0.677);
+    height:1.5rem;
+    width:65px;
+    border-radius:1rem;
+  }
+  .btn__container{
+    display: flex;
+    justify-content: center;
+  }
