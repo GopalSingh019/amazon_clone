@@ -37,7 +37,7 @@ function Home() {
 
   return (
     <section className='home__container'>
-      <img className='home__img' src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg" />
+      <img className='home__img' src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg" alt="banner"/>
       {products?.length > 0 && products.map((item) => {
         return (<><div className='home__rows'>
           <Product key={item[0].id} title={item[0].description} id='001' setAddSuccessFun={setAddSuccessFun}

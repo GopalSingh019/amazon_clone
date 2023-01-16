@@ -1,6 +1,6 @@
 
 import React,{Suspense} from 'react';
-import Header from './components/Header/Header';
+// import Header from './components/Header/Header';
 // import Home from './components/Home/Home';
 import CartPage from './components/Cart/CartPage';
 import Login from './components/Login/login';
@@ -15,7 +15,7 @@ import CheckOut from './components/Checkout/checkout';
 function app() {
 
   const Home=React.lazy(()=>import('./components/Home/Home'));
-
+  const Header=React.lazy(()=>import('./components/Header/Header'));
   return (
     <div className='app'>
         <Provider store={store}>
