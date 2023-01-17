@@ -1,5 +1,5 @@
 
-import React,{Suspense} from 'react';
+import React,{Suspense,lazy} from 'react';
 // import Header from './components/Header/Header';
 // import Home from './components/Home/Home';
 import CartPage from './components/Cart/CartPage';
@@ -14,8 +14,8 @@ import CheckOut from './components/Checkout/checkout';
 
 function app() {
 
-  const Home=React.lazy(()=>import('./components/Home/Home'));
-  const Header=React.lazy(()=>import('./components/Header/Header'));
+  const Home=lazy(()=>import('./components/Home/Home'));
+  const Header=lazy(()=>import('./components/Header/Header'));
   return (
     <div className='app'>
         <Provider store={store}>

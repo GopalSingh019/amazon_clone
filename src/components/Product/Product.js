@@ -22,7 +22,7 @@ function Product(props) {
         <h4>{props.title}</h4>
         <h3>${props.price}</h3>
         <>{rate}</>
-        <div className='product__imgContainer'><div className='product__img'><img src={props.img} alt="Product"/></div></div>
+        <div className='product__imgContainer'><div className='product__img'><img loading='lazy' src={props.img} alt="Product"/></div></div>
         <div className='product__Btn' ><div className='product__addBtn' onClick={onAddToCart}>Add To Cart</div></div>
     </article>
   )
