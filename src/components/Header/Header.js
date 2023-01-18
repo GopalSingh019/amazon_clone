@@ -50,7 +50,7 @@ function Header() {
     return (
         <header className='header__container'>
 
-            <Link to='/' className='link__class'><img src='http://pngimg.com/uploads/amazon/amazon_PNG11.png' className='header__image' /></Link>
+            <Link to='/' className='link__class'><img loading='lazy' src='http://pngimg.com/uploads/amazon/amazon_PNG11.png' className='header__image' /></Link>
             <div className='header__search'>
                 <input className='header__input'></input>
                 <a className='header__button'><SearchIcon></SearchIcon></a>
