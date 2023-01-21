@@ -12,20 +12,34 @@
     /* width:150px; */
     background-color: rgba(128, 128, 128, 0.677);
     border-radius:1rem;
+    animation: wave 5s linear 2s infinite;
   }
   .desc{
     height:15px;
     background-color:rgba(128, 128, 128, 0.677);
     /* width:150px; */
     border-radius:3rem;
+    animation: wave 5s linear 2s infinite;
   }
   .btn{
     background-color: rgba(128, 128, 128, 0.677);
     height:1.5rem;
     width:85px;
     border-radius:1rem;
+    animation: wave 5s linear 2s infinite;
   }
   .btn__container{
     display: flex;
     justify-content: center;
+  }
+  @keyframes wave{
+    0%{
+      background-color: rgba(128, 128, 128, 0.677);
+    }
+    50%{
+      background-color: rgba(128, 128, 128, 0.1);
+    }
+    100%{
+      background-color: rgba(128, 128, 128, 0.677);
+    }
   }
