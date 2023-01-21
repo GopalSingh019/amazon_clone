@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Product from '../Product/Product';
 import './Home.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,14 +11,22 @@ function Home() {
   const dispatch = useDispatch();
   const [products, setProducts] = useState();
   const [addSuccess, setAddSuccess] = useState(false);
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(true);
   const items = useSelector(state => state?.Products?.products);
+  const shimmer=useRef();
+
+  const observer=new IntersectionObserver((entry)=>{if(entry[0].isIntersecting)
+    setPage(page=>{if(page>6){setLoading(false);return page;}else return page+1;})},{root:shimmer.current,threshold:1});
 
   useEffect(() => {
-    setProducts(items);
-    if (products?.length) {
-      var finalItems = products[0].reduce((acc, item, index) => {
+    // setProducts(items);
+    if (items?.length) {
+      var finalItems = items[0].reduce((acc, item, index) => {
         index = parseInt(index / 6);
-        acc[index] = (acc[index]) ? [...acc[index], item] : [{ ...item }];
+        // acc[index] = (acc[index]) ? [...acc[index], item] : [{ ...item }];
+        if(!acc[index])acc[index]=[];
+        acc[index].push(item);
         return acc;
       }, []);
       setProducts(finalItems);
@@ -27,8 +35,9 @@ function Home() {
   useEffect(() => {
     dispatch(setCartItems());
     //dispatch action for loading products
-    dispatch(fetchAllProducts('https://dummyjson.com/products'));
-  }, []);
+    dispatch(fetchAllProducts(`https://dummyjson.com/products?limit=12&skip=${page*12}`,items));
+    observer.observe(shimmer.current);
+  }, [page]);
 
   const setAddSuccessFun = () => {
     setAddSuccess(true);
@@ -65,7 +74,7 @@ function Home() {
           Item Added To Cart😊!
         </Alert>
       </Snackbar>
-      <div className='home__loader'>
+      {loading && <><div className='home__loader' ref={shimmer}>
       <Loading></Loading>
       <Loading></Loading>
       </div>
@@ -76,7 +85,8 @@ function Home() {
       </div>
       <div className='home__loader'>
       <Loading></Loading>
-      </div>
+      </div></>
+}
     </section>
   )
 }

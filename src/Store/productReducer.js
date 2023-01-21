@@ -9,25 +9,27 @@ const productReducer=createSlice({
     initialState,
     reducers:{
         fetchProducts:function(state,action){
-            let products=state.products;
-            if(products)
+            let products=state.Products;
+            // if(products)
+            // return {
+            //     produts:[action.payload.payload.products]
+            // }
             return {
-                produts:[action.payload.payload.products]
-            }
-            return {
-                products:[action.payload.payload.products]
+                products:[action.payload.payload]
             }
         }
     }
 });
 
-export const fetchAllProducts=(url)=>{
+export const fetchAllProducts=(url,product=[])=>{
     return async(dispatch)=>{
         try{
         let response=await fetch(url);
         let data=await response.json();
         console.log(data);
-        dispatch(productReducer.actions.fetchProducts({payload:data}));
+        if(product[0])
+        product=product[0];
+        dispatch(productReducer.actions.fetchProducts({payload:[...product,...data.products]}));
         }catch{
             dispatch(productReducer.actions.fetchProducts(null));
         }
