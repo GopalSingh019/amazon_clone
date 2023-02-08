@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 function checkout() {
   const [openAdd,setOpenAdd]=useState(false);
-  const [address,setAddress]=useState('Bali bhusan singh Near Hanuman mandir,hariyazam colony,jamtara road, Hariyazam colony, NIRSA, JHARKHAND, 828205, India, Phone number: 7488157068');
+  const [address,setAddress]=useState();
   const items=useSelector(store=>store.Items.items);
   console.log(items);
   const closeModal=()=>setOpenAdd(false);
