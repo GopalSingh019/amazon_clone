@@ -68,6 +68,13 @@
 .cart__subtotal{
     text-align: right;
 }
+.payment__form{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem;
+    flex-direction: column;
+    gap:1rem;
+}
 
 /* ====================Medium Devices======================= */
 @media only screen and (max-width:1024px){
@@ -86,4 +93,5 @@
     .cart__productCost{
         font-size:medium;
     }
+    
 }
