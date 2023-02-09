@@ -9,7 +9,11 @@ import { BrowserRouter,Route } from 'react-router-dom';
 import {Router, Routes} from 'react-router';
 import { Provider } from 'react-redux';
 import store from './Store/Store';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 // import CheckOut from './components/Checkout/checkout';
+
+const stripePromise=loadStripe('pk_test_51MZVocSDW6rpkpt9ETLUszQpj6b7z4qzoybS7LCFzTb3xabWMke6a95hzmpvj5ZINU8bEMjsRZJ5U7LgHslqxRhL00y8mnSKc7');
 
 
 function app() {
@@ -30,7 +34,7 @@ function app() {
         <Route path='/checkout' element={<><Header></Header><Suspense fallback={<div>Loading...</div>}><CartPage/></Suspense></>}></Route>
         <Route path='/Login' element={<Suspense fallback={<div>Loading...</div>}><Login></Login></Suspense>} />
         <Route path='/createAcc' element={<Suspense fallback={<div>Loading...</div>}><SignUp></SignUp></Suspense>}/>
-        <Route path='/gp' element={<Suspense fallback={<div>Loading...</div>}><CheckOut></CheckOut></Suspense>}/>
+        <Route path='/gp' element={<Suspense fallback={<div>Loading...</div>}><Elements stripe={stripePromise} ><CheckOut></CheckOut></Elements></Suspense>}/>
         </Routes>
         
         </BrowserRouter>
