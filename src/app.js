@@ -24,6 +24,8 @@ function app() {
   const SignUp =lazy(()=>import('./components/SignUp/SignUp'));
   const Login =lazy(()=>import('./components/Login/login'));
   const CartPage =lazy(()=>import('./components/Cart/CartPage'));
+
+  
   return (
     <div className='app'>
         <Provider store={store}>
