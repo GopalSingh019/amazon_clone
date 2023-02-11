@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { auth } from '../../FireBase/FirebaseConfig';
+import { auth,db } from '../../FireBase/FirebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
 function Header() {
@@ -14,6 +14,8 @@ function Header() {
     const [sign, setSign] = useState('Sign In');
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    console.log(auth?.currentUser?.email);
+
 
     const totalItems = useSelector(state => state?.Items?.items?.length) || 0;
 

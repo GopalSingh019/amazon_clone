@@ -41,9 +41,10 @@ function Home() {
     observer.observe(shimmer.current);
   }, [page]);
 
-  const setAddSuccessFun = () => {
-    setAddSuccess(true);
-    setTimeout(() => { setAddSuccess(false) }, 6000)
+  const setAddSuccessFun = (val) => {
+    setAddSuccess(val);
+    if(val)
+    setTimeout(() => { setAddSuccess(false) }, 6000);
   }
 
   return (

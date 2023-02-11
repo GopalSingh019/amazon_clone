@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import './cartPage.css';
 import CartProduct from './cartProduct/cartProduct';
-import { setCartItems, updateCartItems, } from '../../Store/cartReducer';
+import { fetchCartItems, setCartItems, updateCartItems, } from '../../Store/cartReducer';
 import {setCheckoutItems} from '../../Store/checkoutReducer';
+
 
 
 function CartPage() {
@@ -23,6 +24,7 @@ function CartPage() {
 
   useEffect(() => {
     dispatch(setCartItems());
+    dispatch(fetchCartItems());
 
     return updateLs;
   }, []);
