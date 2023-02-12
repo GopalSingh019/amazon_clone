@@ -16,29 +16,25 @@ const cartReducer = createSlice({
 
             state.container=action.payload;
         },
-        updateCartItems: function (state, action) {
-            
-            return{
-                ...action.payload.payload
-            }
-
-        }
+        
     }
 });
 
 export default cartReducer.reducer
 
-export const { setCartItems, updateCartItems } = cartReducer.actions;
+export const { setCartItems } = cartReducer.actions;
 
 // async actions to do api call
 
 export const fetchCartItems=()=>async(dispatch)=>{
     try{
-        const q = query(collection(db, "cart"), where("username", "==", auth?.currentUser?.email));
+        
+        const q = query(collection(db, "cart"), where("username", "==", auth.currentUser?.email));
 
         const querySnapshot = await getDocs(q);
         const data=querySnapshot.docs.map((item)=>{return {...item._document.data.value.mapValue.fields,ref:item.id}});
         dispatch(setCartItems(data));
+        
 
     }catch(e){
         console.log(e);

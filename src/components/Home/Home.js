@@ -12,7 +12,7 @@ function Home() {
   const [addSuccess, setAddSuccess] = useState(false);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(true);
-  const items = useSelector(state => state?.Products?.products);
+  const items = useSelector(store => store?.Products?.products);
   const shimmer = useRef();
 
   const observer = new IntersectionObserver((entry) => {

@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Button, FormControl, InputLabel, MenuItem, Modal, Select, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { addDoc, collection } from 'firebase/firestore';
+import { auth, db } from '../../FireBase/FirebaseConfig';
+import { fetchAddress } from '../../Store/addressReducer';
+import { useDispatch } from 'react-redux';
 
-function AddressForm({open,close}) {
+function AddressForm({open,close,address}) {
     const [country,setCountry]=useState();
+    
     const formik=useFormik({
         initialValues:{fullname:'',mob:'',pin:'',flat:'',area:'',landmark:'',country:''},
         validationSchema:Yup.object({
@@ -16,8 +21,12 @@ function AddressForm({open,close}) {
             landmark:Yup.string().required('Enter Landmark')
         }),
         onSubmit:(values,{setSubmitting})=>{
-            alert(JSON.stringify(values));
+            // alert(JSON.stringify(values));
             close();
+            if(!address){
+                addDoc(collection(db,'address'),{...values,username:auth.currentUser?.email});
+                // dispatch(fetchAddress());
+            }
         }
       })
 

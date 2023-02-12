@@ -1,20 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './checkout.css'
 import CheckoutProduct from './CheckoutProduct';
 import AddressForm from './AddressForm';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { Button } from '@mui/material';
+import { fetchAddress } from '../../Store/addressReducer';
 
-const stripePromise=loadStripe('pk_test_51MZVocSDW6rpkpt9ETLUszQpj6b7z4qzoybS7LCFzTb3xabWMke6a95hzmpvj5ZINU8bEMjsRZJ5U7LgHslqxRhL00y8mnSKc7')
+const stripePromise=loadStripe('pk_test_51MZVocSDW6rpkpt9ETLUszQpj6b7z4qzoybS7LCFzTb3xabWMke6a95hzmpvj5ZINU8bEMjsRZJ5U7LgHslqxRhL00y8mnSKc7');
 
 function checkout() {
   const [openAdd,setOpenAdd]=useState(false);
-  const [address,setAddress]=useState('this');
-  const items=useSelector(store=>store.Items.items);
-  console.log(items);
+  const dispatch=useDispatch();
+  // const [address,setAddress]=useState('this');
+
+
+  const items=useSelector(store=>store.Items.container);
+  const address=useSelector(store=>store?.Address?.container);
+
+
   const closeModal=()=>setOpenAdd(false);
+  useEffect(()=>{
+    dispatch(fetchAddress());
+  },[openAdd]);
+
   const stripe = useStripe();
   const elements = useElements();
 
@@ -51,7 +61,7 @@ function checkout() {
       <main className='checkout__Container'>
         <div className='container__billing'>
           {/* form for address */}
-          <AddressForm open={openAdd} close={closeModal}/>
+          <AddressForm open={openAdd} close={closeModal} address={address}/>
           <div>
             <div className='summary__header'>
               <h3>ORDER SUMMARY</h3>
@@ -62,7 +72,7 @@ function checkout() {
             </div>
             <div className='list__container'>
               <h2>Items</h2>
-              {items.map((item)=>{if(item.selected)
+              {items.map((item)=>{if(item.selected.booleanValue)
               return <CheckoutProduct>{item}</CheckoutProduct>}
               )}
             </div>
