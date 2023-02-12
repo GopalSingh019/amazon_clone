@@ -67,7 +67,7 @@ function checkout() {
               <h3>ORDER SUMMARY</h3>
             </div>
             <div className='list__container'>
-              <p className='summary__addrDetail'>{address ? `Delivery Address - ${address}`:'Please add an address for delivery.'}</p>
+              <p className='summary__addrDetail'>{address ? `Delivery Address - ${address?.fullname}, ${address?.flat}, ${address?.landmark}, ${address?.area}, ${address?.country} - ${address?.pin}. ${address?.mob}`:'Please add an address for delivery.'}</p>
               {address ? <button className='addr_btn' onClick={()=>setOpenAdd(true)}>Edit Address</button>:<button className='addr_btn' onClick={()=>setOpenAdd(true)}>Add Address</button>}
             </div>
             <div className='list__container'>

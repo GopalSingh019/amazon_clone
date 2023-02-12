@@ -4,14 +4,13 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { addDoc, collection } from 'firebase/firestore';
 import { auth, db } from '../../FireBase/FirebaseConfig';
-import { fetchAddress } from '../../Store/addressReducer';
-import { useDispatch } from 'react-redux';
+
 
 function AddressForm({open,close,address}) {
     const [country,setCountry]=useState();
     
     const formik=useFormik({
-        initialValues:{fullname:'',mob:'',pin:'',flat:'',area:'',landmark:'',country:''},
+        initialValues:{fullname:address?.fullname || '',mob:address?.mob || '',pin:address?.pin || '',flat:address?.flat || '',area:address?.area || '',landmark:address?.landmark || '',country:address?.country || ''},
         validationSchema:Yup.object({
             fullname:Yup.string().required('Enter Full Name'),
             mob:Yup.number('Enter Moile/Phone Number').max(9999999999,'Enter Correct Mobile Number').min(1000000000,'Enter Correct Mobile Number').required('Enter Mobile Number'),
@@ -43,19 +42,19 @@ function AddressForm({open,close,address}) {
             ><div className='boxModal'>
                     <h1>Enter a delivery address</h1>
                     <form>
-                        <TextField variant='outlined' label="Full Name" value={formik.values.fullname} name="fullname" onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.fullname && formik.errors.fullname} helperText={formik.touched.fullname && formik.errors.fullname ? formik.errors.fullname:null}/>
-                        <TextField variant='outlined' label="Mobile number" name="mob" value={formik.values.mob} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.mob && formik.errors.mob} helperText={formik.touched.mob && formik.errors.mob ? formik.errors.mob:null}/>
-                        <TextField variant='outlined' label="Pincode" name="pin" value={formik.values.pin}  onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.pin && formik.errors.pin} helperText={formik.touched.pin && formik.errors.pin ? formik.errors.pin:null}/>
-                        <TextField variant='outlined' label="Flat, House no., Building, Company, Apartment" value={formik.values.flat} name="flat" onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.flat && formik.errors.flat} helperText={formik.touched.flat && formik.errors.flat ? formik.errors.flat:null}/>
-                        <TextField variant='outlined' label="Area, Street, Sector, Village" name="area" value={formik.values.area} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.area && formik.errors.area} helperText={formik.touched.area && formik.errors.area ? formik.errors.area:null}/>
-                        <TextField variant='outlined' label="Landmark" name="landmark" value={formik.values.landmark} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.landmark && formik.errors.landmark} helperText={formik.touched.landmark && formik.errors.landmark ? formik.errors.landmark:null}/>
+                        <TextField variant='outlined' label="Full Name" defaultValue={formik.values.fullname} name="fullname" onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.fullname && formik.errors.fullname} helperText={formik.touched.fullname && formik.errors.fullname ? formik.errors.fullname:null}/>
+                        <TextField variant='outlined' label="Mobile number" name="mob" defaultValue={formik.values.mob} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.mob && formik.errors.mob} helperText={formik.touched.mob && formik.errors.mob ? formik.errors.mob:null}/>
+                        <TextField variant='outlined' label="Pincode" name="pin" defaultValue={formik.values.pin}  onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.pin && formik.errors.pin} helperText={formik.touched.pin && formik.errors.pin ? formik.errors.pin:null}/>
+                        <TextField variant='outlined' label="Flat, House no., Building, Company, Apartment" defaultValue={formik.values.flat} name="flat" onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.flat && formik.errors.flat} helperText={formik.touched.flat && formik.errors.flat ? formik.errors.flat:null}/>
+                        <TextField variant='outlined' label="Area, Street, Sector, Village" name="area" defaultValue={formik.values.area} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.area && formik.errors.area} helperText={formik.touched.area && formik.errors.area ? formik.errors.area:null}/>
+                        <TextField variant='outlined' label="Landmark" name="landmark" defaultValue={formik.values.landmark} onChange={formik.handleChange} onBlur={formik.handleBlur} error={formik.touched.landmark && formik.errors.landmark} helperText={formik.touched.landmark && formik.errors.landmark ? formik.errors.landmark:null}/>
 
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Country</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={formik.values.country}
+                                defaultValue={formik.values.country}
                                 label="Age"
                                 onChange={formik.handleChange} onBlur={formik.handleBlur}
 

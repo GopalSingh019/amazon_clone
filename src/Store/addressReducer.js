@@ -1,5 +1,5 @@
 import { createSlice} from "@reduxjs/toolkit";
-import { collection,  getDoc, query } from "firebase/firestore";
+import { collection,   getDocs, query, where } from "firebase/firestore";
 import { auth, db } from "../FireBase/FirebaseConfig";
 
 const addressSlice=createSlice({
@@ -12,13 +12,18 @@ const addressSlice=createSlice({
     }
 })
 
+export const {setAddress}=addressSlice.actions;
+
 export const fetchAddress=()=>async (dispatch)=>{
     try{
-        const addressQuery= query(collection(db, "address"), where("username", "==", auth.currentUser?.email));
-        const data=await getDoc(addressQuery);
+        const q= query(collection(db, "address"), where("username", "==", auth.currentUser?.email));
+        const querySnapshot = await getDocs(q);
+        let data;
+        querySnapshot.forEach((doc) => data=doc.data() );
+        console.log(data);
         dispatch(setAddress(data));
     }catch(e){
-
+        console.log(e);
     }
 }
 
