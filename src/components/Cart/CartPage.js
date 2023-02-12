@@ -4,39 +4,33 @@ import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import './cartPage.css';
 import CartProduct from './cartProduct/cartProduct';
-import { fetchCartItems, setCartItems, updateCartItems, } from '../../Store/cartReducer';
-import {setCheckoutItems} from '../../Store/checkoutReducer';
+import { fetchCartItems,  } from '../../Store/cartReducer';
+
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../../FireBase/FirebaseConfig';
 
 
 
 function CartPage() {
   const [costTotal, setCostTotal] = useState(() => { return 0; });
   const [selected, setSelected] = useState(() => { return 0; });
-  const totalItems = useSelector(state => state?.Items?.items);
+  const totalItems = useSelector(store => store?.Items?.container);
   const savedItems=React.useRef();
   savedItems.current=totalItems;
   const dispatch = useDispatch();
   const navigate=useNavigate();
 
-  const updateLs=()=>{
-    localStorage.setItem("cart",JSON.stringify(savedItems.current || []));
-  };
 
-  useEffect(() => {
-    dispatch(setCartItems());
-    dispatch(fetchCartItems());
 
-    return updateLs;
-  }, []);
 
   useMemo(() => {
     if (totalItems?.length > 0) {
       let count = 0;
       let sumTotal = 0;
       for (let item in totalItems) {
-        if (totalItems[item].selected === true) {
+        if (totalItems[item].selected.booleanValue === true) {
           count++;
-          sumTotal += Number(totalItems[item].price * (totalItems[item].qty || 1));
+          sumTotal += Number(totalItems[item].price.integerValue * (totalItems[item].qty.integerValue || 1));
         }
       }
       setSelected(count);
@@ -45,37 +39,26 @@ function CartPage() {
     };
   }, [totalItems]);
 
-  const onDeselectAll = () => {
-    let oldItems = JSON.parse(JSON.stringify(totalItems));
-    const newItems = oldItems.map((item) => { item.selected = false; return item });
-    console.log(newItems);
-    dispatch(updateCartItems({ payload: { items: newItems } }));
+  const onDeselectAll =async () => {
+    await totalItems.forEach(element => {
+      updateDoc(doc(db,'cart',element.ref),{selected:false});
+    });
+    // updateDoc(doc(db,'cart',ref),{selected:false);
+    dispatch(fetchCartItems());
   }
 
-  const onSelectAll = () => {
-    let oldItems = JSON.parse(JSON.stringify(totalItems));
-    const newItems = oldItems.map((item) => { item.selected = true; return item });
-    console.log(newItems);
-    dispatch(updateCartItems({ payload: { items: newItems } }));
+  const onSelectAll =async () => {
+    await totalItems.forEach(element => {
+      updateDoc(doc(db,'cart',element.ref),{selected:true});
+    });
+    // updateDoc(doc(db,'cart',ref),{selected:false);
+    dispatch(fetchCartItems());
   }
 
-  const updateProducts=(id,property,value)=>{
-    let oldItems = JSON.parse(JSON.stringify(totalItems));
-    if(property!=="Delete")
-    {
-      let product=oldItems.map((item)=>{if(item.id===id)item[property]=value;return item});
-      dispatch(updateCartItems({ payload: { items: product } }));
-    }else{
-      let product=oldItems.reduce((acc,item)=>{if(item.id!==id)acc.push(item);return acc},[]);
-      dispatch(updateCartItems({ payload: { items: product } }));
-    }
-  }
+  
 
   const onProceedToCheckOut=()=>{
     if(costTotal>0){
-      let oldItems = JSON.parse(JSON.stringify(totalItems));
-      let newItems=oldItems.reduce((acc,item)=>{if(item.selected)acc.push(item);return acc;},[]);
-      dispatch(setCheckoutItems({payload:newItems}));
       navigate('/gp');
     }
   }
@@ -93,7 +76,7 @@ function CartPage() {
 
         {/* cartProduct portion  and separator*/}
         {totalItems?.map((item,index) => {
-          return <><CartProduct key={index} update={updateProducts.bind(this)}>{item}</CartProduct><hr></hr></>
+          return <><CartProduct key={index} >{item}</CartProduct><hr></hr></>
         })}
 
         {/* <hr></hr>

@@ -22,7 +22,8 @@ function Product(props) {
     }
 
     //add product to firestore
-    // const doc=await addDoc(collection(db,'cart'),{...props.children,selected:true,qty:1,username:auth?.currentUser?.email})
+    // const dataToAdd=JSON.stringify({...props.children,selected:true,qty:1});
+    const doc=await addDoc(collection(db,'cart'),{...props.children,selected:true,qty:1,username:auth?.currentUser?.email});
 
     let cartProduct=JSON.parse(localStorage.getItem("cart")) || [];
     cartProduct.push({...props.children,selected:true,qty:1,username:auth?.currentUser?.email});

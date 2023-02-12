@@ -3,7 +3,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../FireBase/FirebaseConfig";
 
 const initialState = {
-    items: []
+    container: []
 }
 
 const cartReducer = createSlice({
@@ -12,11 +12,9 @@ const cartReducer = createSlice({
     reducers: {
         setCartItems(state, action) {
 
-            let items=localStorage.getItem("cart") || '[]';
+            // let items=localStorage.getItem("cart") || '[]';
 
-            return {
-                items:JSON.parse(localStorage.getItem("cart") || '[]')
-            }
+            state.container=action.payload;
         },
         updateCartItems: function (state, action) {
             
@@ -39,7 +37,8 @@ export const fetchCartItems=()=>async(dispatch)=>{
         const q = query(collection(db, "cart"), where("username", "==", auth?.currentUser?.email));
 
         const querySnapshot = await getDocs(q);
-        console.log(querySnapshot.docs[0]._document.data.value.mapValue.fields);
+        const data=querySnapshot.docs.map((item)=>{return {...item._document.data.value.mapValue.fields,ref:item.id}});
+        dispatch(setCartItems(data));
 
     }catch(e){
         console.log(e);

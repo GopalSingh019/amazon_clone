@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { auth } from "../FireBase/FirebaseConfig";
 
 const initialState={
-    user:null
+    container:null
 }
 
 const userReducer=createSlice({
@@ -9,15 +10,26 @@ const userReducer=createSlice({
     initialState,
     reducers:{
         setUser:(state,action)=>{
-            if(action.payload){
-                return {
-                    ...state,
-                    user: action.payload
-                  }
-            }
+            state.container=action.payload;
         }
     }
 })
+
+export const userCheck = ()=>async (dispatch)=>{
+    try{
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                dispatch(setUser(user))
+                // setUser(user);
+                // setUserName(user.email);
+                // setSign('Sign Out');
+                // dispatch(setUser({user}));
+            }
+        })
+    }catch(e){
+
+    }
+}
 
 export default userReducer.reducer;
 

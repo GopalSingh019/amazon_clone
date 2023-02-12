@@ -4,30 +4,33 @@ import SearchIcon from '@mui/icons-material/Search';
 import ProductionQuantityLimitsOutlinedIcon from '@mui/icons-material/ProductionQuantityLimitsOutlined';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { auth,db } from '../../FireBase/FirebaseConfig';
 import { useNavigate } from 'react-router-dom';
+import { userCheck } from '../../Store/userReducers';
+import { fetchCartItems } from '../../Store/cartReducer';
 
 function Header() {
-    const [userName, setUserName] = useState('Accounts');
-    const [sign, setSign] = useState('Sign In');
-    const [user, setUser] = useState(null);
+    // const [userName, setUserName] = useState('Accounts');
+    // const [sign, setSign] = useState('Sign In');
+    // const [user, setUser] = useState(null);
     const navigate = useNavigate();
-    console.log(auth?.currentUser?.email);
+    const dispatch=useDispatch();
 
 
-    const totalItems = useSelector(state => state?.Items?.items?.length) || 0;
+    const totalItems = useSelector(state => state?.Items?.container?.length) || 0;
+    const user=useSelector(store => store?.user?.container) || null;
+    const sign=user? 'Sign Out':'Sign In';
+    const userName=user? user.email:'Accounts';
 
     useEffect(() => {
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                setUser(user);
-                setUserName(user.email);
-                setSign('Sign Out');
-            }
-        })
+        dispatch(userCheck());
+        // dispatch(fetchCartItems);
     }, []);
+    useEffect(()=>{
+        dispatch(fetchCartItems());
+    },[user])
     const signOption = (oEvent) => {
         oEvent.preventDefault();
         if (sign === 'Sign In') {

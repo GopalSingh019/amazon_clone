@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import Product from '../Product/Product';
 import './Home.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCartItems } from '../../Store/cartReducer';
 import { fetchAllProducts } from '../../Store/productReducer';
 import { Alert, Snackbar } from '@mui/material';
 import Loading from '../Loader/Loader';
@@ -35,7 +34,6 @@ function Home() {
     }
   }, [items]);
   useEffect(() => {
-    dispatch(setCartItems());
     //dispatch action for loading products
     dispatch(fetchAllProducts(`https://dummyjson.com/products?limit=12&skip=${page * 12}`, items));
     observer.observe(shimmer.current);
