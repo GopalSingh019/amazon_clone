@@ -19,15 +19,17 @@ export const userCheck = ()=>async (dispatch)=>{
     try{
         auth.onAuthStateChanged((user) => {
             if (user) {
-                dispatch(setUser(user))
+                dispatch(setUser(user));
                 // setUser(user);
                 // setUserName(user.email);
                 // setSign('Sign Out');
                 // dispatch(setUser({user}));
+            }else{
+                dispatch(setUser());
             }
         })
     }catch(e){
-
+        dispatch(setUser());
     }
 }
 

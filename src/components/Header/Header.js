@@ -37,10 +37,12 @@ function Header() {
             navigate('/Login');
         } else {
             auth.signOut().then(() => {
-                setUser(null);
-                setUserName('Accounts');
-                setSign('Sign In');
+                // setUser(null);
+                // setUserName('Accounts');
+                // setSign('Sign In');
+                dispatch(userCheck());
                 navigate('/');
+                
             })
         }
     }

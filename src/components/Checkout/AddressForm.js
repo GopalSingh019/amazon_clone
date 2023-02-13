@@ -2,12 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { Button, FormControl, InputLabel, MenuItem, Modal, Select, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, query, setDoc, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../../FireBase/FirebaseConfig';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCountry } from '../../Store/countryReducer';
+import { fetchAddress } from '../../Store/addressReducer';
 
 
 function AddressForm({open,close,address}) {
-    const [country,setCountry]=useState();
+    // const [country,setCountry]=useState();
+    const dispatch=useDispatch();
+    const country=useSelector(store=>store.Country.container);
+    const arr=[];
+
+    useEffect(()=>{if(!country)dispatch(fetchCountry())},[]);
+    if(country){
+        for(let item in country.data)
+        arr.push(country.data[item].country);
+    }
+
+    // console.log(arr);
     
     const formik=useFormik({
         initialValues:{fullname:address?.fullname || '',mob:address?.mob || '',pin:address?.pin || '',flat:address?.flat || '',area:address?.area || '',landmark:address?.landmark || '',country:address?.country || ''},
@@ -17,15 +31,22 @@ function AddressForm({open,close,address}) {
             pin:Yup.number('Enter Pin Code').max(999999,'Enter Pin lss Code').min(100000,'Enter Pin mor Code').required('Enter PiN Code'),
             flat:Yup.string().required('Enter Address Detail'),
             area:Yup.string().required('Enter Address Detail'),
-            landmark:Yup.string().required('Enter Landmark')
+            landmark:Yup.string().required('Enter Landmark'),
+            country:Yup.string().required('Please select one country')
         }),
-        onSubmit:(values,{setSubmitting})=>{
+        onSubmit:async (values,{setSubmitting})=>{
             // alert(JSON.stringify(values));
+            console.log(values);
             close();
             if(!address){
-                addDoc(collection(db,'address'),{...values,username:auth.currentUser?.email});
+                await setDoc(doc(db,'address',auth.currentUser.email),values);
                 // dispatch(fetchAddress());
             }
+            else{
+                const q=query()
+                await setDoc(doc(db,'address',auth.currentUser.email),values);
+            }
+            dispatch(fetchAddress());
         }
       })
 
@@ -52,6 +73,7 @@ function AddressForm({open,close,address}) {
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Country</InputLabel>
                             <Select
+                            name="country"
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 defaultValue={formik.values.country}
@@ -59,9 +81,8 @@ function AddressForm({open,close,address}) {
                                 onChange={formik.handleChange} onBlur={formik.handleBlur}
 
                             >
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
+                                {arr && arr.map((item)=><MenuItem value={item}>{item}</MenuItem>)}
+                                
                             </Select>
                         </FormControl>
                         <div>

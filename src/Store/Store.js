@@ -4,6 +4,7 @@ import cartReducer from './cartReducer';
 import productReducer from "./productReducer";
 import checkoutReducer from "./checkoutReducer";
 import addressReducer from "./addressReducer";
+import countryReducer from "./countryReducer";
 
 export default configureStore({
     reducer:{
@@ -11,6 +12,7 @@ export default configureStore({
         Items:cartReducer,
         Products:productReducer,
         Checkout:checkoutReducer,
-        Address:addressReducer
+        Address:addressReducer,
+        Country:countryReducer
     }
 });
