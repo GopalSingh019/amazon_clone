@@ -54,6 +54,15 @@ function Header() {
             navigate('/checkout');
         }
     }
+
+    const onClickOrder=(oEvent)=>{
+        oEvent.preventDefault();
+        // if (sign === 'Sign In') {
+        //     navigate('/Login');
+        // } else {
+            navigate('/orders');
+        // }
+    }
     return (
         <header className='header__container'>
 
@@ -65,7 +74,7 @@ function Header() {
             <div className='header__options'>
                 <ul className="header__nav">
                     <li className='nav_link nav__link1'><Link onClick={signOption} className='link__class'><small>Hello, {sign}</small><h3>{userName}</h3></Link></li>
-                    <li className='nav_link nav__link1'><a><small>Returns</small><h3>& Orders</h3></a></li>
+                    <li className='nav_link nav__link1'><Link onClick={onClickOrder} className='link__class'><small>Returns</small><h3>& Orders</h3></Link></li>
                     <li className='nav_link '>
                         <Link className='link__class' onClick={checkout}>
                             <div className="nav__cartOption">

@@ -40,16 +40,16 @@ function CartPage() {
   }, [totalItems]);
 
   const onDeselectAll =async () => {
-    await totalItems.forEach(element => {
-      updateDoc(doc(db,'cart',element.ref),{selected:false});
+     totalItems.forEach(async (element) => {
+      await updateDoc(doc(db,'cart',element.ref),{selected:false});
     });
     // updateDoc(doc(db,'cart',ref),{selected:false);
     dispatch(fetchCartItems());
   }
 
   const onSelectAll =async () => {
-    await totalItems.forEach(element => {
-      updateDoc(doc(db,'cart',element.ref),{selected:true});
+    totalItems.forEach(async (element) => {
+      await updateDoc(doc(db,'cart',element.ref),{selected:true});
     });
     // updateDoc(doc(db,'cart',ref),{selected:false);
     dispatch(fetchCartItems());

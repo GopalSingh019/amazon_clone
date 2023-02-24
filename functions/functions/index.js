@@ -19,6 +19,7 @@ app.use(express.json());
 app.post('/payment/create', async (req, res) => {
 
     const amount=req.query.total;
+    const name=req.query.name;
     // const address=req.body.address
     // console.log('thi si test',address);
 
@@ -27,7 +28,7 @@ app.post('/payment/create', async (req, res) => {
         currency:'usd',
         description:'amazon clone services',
         shipping: {
-            name: 'Jenny Rosen',
+            name: name,
             address: {
               line1: '510 Townsend St',
               postal_code: '98140',

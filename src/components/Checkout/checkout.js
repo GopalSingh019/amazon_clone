@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import './checkout.css'
+import './checkout.css';
 import CheckoutProduct from './CheckoutProduct';
 import AddressForm from './AddressForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js';
+import { CardElement,  useElements, useStripe } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { fetchAddress } from '../../Store/addressReducer';
+import { useNavigate } from 'react-router';
+import { deleteDoc, doc, setDoc } from 'firebase/firestore';
+import { db,auth } from '../../FireBase/FirebaseConfig';
 
 const stripePromise = loadStripe('pk_test_51MZVocSDW6rpkpt9ETLUszQpj6b7z4qzoybS7LCFzTb3xabWMke6a95hzmpvj5ZINU8bEMjsRZJ5U7LgHslqxRhL00y8mnSKc7');
 
@@ -16,6 +19,7 @@ function checkout() {
   const [loading, setLoading] = useState('');
   const [client_secret,setClient_secret]=useState();
   const dispatch = useDispatch();
+  const navigate=useNavigate();
   // const [address,setAddress]=useState('this');
 
 
@@ -24,7 +28,7 @@ function checkout() {
 
   useEffect(()=>{
     let total=items?.reduce((acc,item)=>{if(item.selected.booleanValue)return acc + +(item.price.integerValue*item.qty.integerValue);return acc},0)
-    fetch(`http://127.0.0.1:5001/ecomm-4068f/us-central1/api/payment/create?total=${total*100}`,{
+    fetch(`http://127.0.0.1:5001/ecomm-4068f/us-central1/api/payment/create?total=${total*100}&name=${address?.fullname}`,{
       method:'POST',
       body:{
         address:JSON.stringify({...address}),
@@ -67,6 +71,25 @@ function checkout() {
       setPayment('error');
     } else {
       setPayment('success');
+      const date=new Date();
+      try{
+      let orders=items.reduce((acc,item)=>{if(item.selected.booleanValue)acc.push(item);return acc},[]);
+      await setDoc(doc(db,'orders',result.paymentIntent.id),{
+        name:result.paymentIntent.shipping.name,
+        amount:result.paymentIntent.amount,
+        username:auth?.currentUser?.email,
+        items:orders,
+        ref:result.paymentIntent.id,
+        date:date.getUTCDay()+'/'+date.getUTCMonth()+"/"+date.getUTCFullYear()
+      });
+      orders.forEach(async element => {
+        await deleteDoc(doc(db,'cart',element.ref));
+      });
+    }catch(e){
+      console.log(e);
+    }
+      navigate('/orders');
+      dispatch(fetchCartItems());
     }
   }
 
